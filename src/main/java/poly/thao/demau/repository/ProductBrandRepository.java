@@ -21,7 +21,7 @@ public interface ProductBrandRepository extends JpaRepository<ProductBrand, Inte
         from  product_brand pb
         join brand  b on b.id = pb.brand.id
         where pb.product.productName like concat('%', :#{#req.productName}, '%')
-        and pb.brand.id =  :#{#req.brandId}
+        and pb.brand.id =  :#{#req.brandId} or pb.brand.id is null
         """)
     Page<ProductBrandResponse> getPage(SearchRequest req, Pageable pageable);
 
